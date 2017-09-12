@@ -11,8 +11,6 @@ filetype plugin indent on     " обязательно!
 " =============================================================================
 " Plugins
 " =============================================================================
- 
-" =============================================================================
 
 Bundle 'tpope/vim-fugitive'
 Bundle 'lokaltog/vim-easymotion'
@@ -25,34 +23,26 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-go'
 let g:neocomplete#enable_at_startup = 1
 
-" ---- Filesystem ----
+" ---- NerdTree ----
 Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$','\.o$']
+map <F3> :NERDTreeToggle<CR>
+
 " ---- Python ----
 Plugin 'klen/python-mode'
 Plugin 'davidhalter/jedi-vim'
+
 "---- GO ----
 Plugin 'fatih/vim-go'
 
+"---- Git ----
+Plugin 'airblade/vim-gitgutter'
+
+"---- Ident Guides ----
+Plugin 'nathanaelkane/vim-indent-guides'
+
 set backspace=indent,eol,start
-aunmenu Help.
-aunmenu Window.
-let no_buffers_menu=1
 set mousemodel=popup
-
-set ruler
-set completeopt-=preview
-set gcr=a:blinkon0
-if has("gui_running")
-	  set cursorline
-  endif
-  set ttyfast
-
-" NerdTree настройки
-" показать NERDTree на F3
-map <F3> :NERDTreeToggle<CR>
-" "игноррируемые файлы с расширениями
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$','\.o$']
 
 " CTRL-s - сохранить файл
 noremap <silent> <C-S> :update<CR>

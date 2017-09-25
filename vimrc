@@ -23,10 +23,17 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-go'
 let g:neocomplete#enable_at_startup = 1
 
+"--- Vundle --- git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+Plugin 'VundleVim/Vundle.vim'
+
 " ---- NerdTree ----
 Plugin 'scrooloose/nerdtree'
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$','\.o$']
 map <F3> :NERDTreeToggle<CR>
+
+"---- Command-t ----
+Plugin 'wincent/command-t'
+map <F2> :CommandT<CR>
 
 " ---- Python ----
 Plugin 'klen/python-mode'

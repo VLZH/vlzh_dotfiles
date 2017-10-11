@@ -51,7 +51,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker docker-compose django python pip npm node)
+plugins=(git brew docker docker-compose django python pip npm node gulp)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -75,9 +75,11 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Example aliases
 alias dk="docker"
 alias dkc="docker-compose"
+alias gp="grep"
+alias ssh-bitbucket="ssh-add -D; ssh-add ~/.ssh/bitbucket"
+alias ssh-iw="ssh-add -D; ssh-add ~/.ssh/id_rsa"
 
 # before install : brew install zsh-syntax-highlighting
 source /usr/local/Cellar/zsh-syntax-highlighting/0.6.0/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

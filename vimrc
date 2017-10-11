@@ -65,3 +65,8 @@ set laststatus=2
 set expandtab " spaces instead of tabs 
 set tabstop=4 " ширина табуляции
 set softtabstop=4 " ширина таба при использовании всесто него пробелов
+" buffers keys
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>

@@ -77,7 +77,8 @@ source $ZSH/oh-my-zsh.sh
 
 alias dk="docker"
 alias dkc="docker-compose"
-alias gp="grep"
+alias vim="/usr/local/bin/vim"
+alias vi="/usr/local/bin/vim"
 alias ssh-bitbucket="ssh-add -D; ssh-add ~/.ssh/bitbucket"
 alias ssh-iw="ssh-add -D; ssh-add ~/.ssh/id_rsa"
 

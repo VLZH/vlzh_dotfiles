@@ -42,6 +42,7 @@ map <F2> :CommandT<CR>
 " ---- Python ----
 Plugin 'klen/python-mode'
 Plugin 'davidhalter/jedi-vim'
+let g:pymode_python = 'python3'
 let g:pymode_lint_on_write = 0
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
@@ -49,12 +50,16 @@ let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
+let pymode_folding = 0
 
 " ---- Javascript ----
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'ternjs/tern_for_vim'
 let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 Plugin 'prettier/vim-prettier'
+" vue
+Plugin 'posva/vim-vue'
 
 "---- GO ----
 Plugin 'fatih/vim-go'
@@ -80,11 +85,17 @@ set laststatus=2
 set expandtab " spaces instead of tabs 
 set tabstop=4 " ширина табуляции
 set softtabstop=4 " ширина таба при использовании всесто него пробелов
+
+" ---- Buffers ----
 " switching between buffers panels
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
+"map <C-k> <C-w><Up>
+"map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
+map <C-K> :bnext<CR>
+map <C-J> :bprev<CR>
+set hidden
+
 set guioptions=
+" enable mouse support
+set mouse=a

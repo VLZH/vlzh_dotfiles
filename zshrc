@@ -51,7 +51,18 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker docker-compose django python pip npm node gulp)
+plugins=(
+    git
+    brew
+    docker
+    docker-compose
+    django
+    python
+    pip
+    npm
+    node
+    gulp
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,6 +85,8 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+export LANG=ru_RU.UTF-8
+export LC_CTYPE=ru_RU.UTF-8
 
 alias dk="docker"
 alias dkc="docker-compose"

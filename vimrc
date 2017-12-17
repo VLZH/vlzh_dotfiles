@@ -26,18 +26,40 @@ Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/deoplete.nvim'
 let g:neocomplete#enable_at_startup = 1
 
+" ---- Syntastic ----
+Plugin 'vim-syntastic/syntastic'
+let g:syntastic_python_python_exec = 'python3'
+
+" ---- CTRLP ----
+" Plugin 'kien/ctrlp.vim'
+" map <F2> :CtrlP<CR>
+" map <F1> :CtrlPBuffer<CR>
+" let g:ctrlp_extensions = ['tag']
+
+" ---- EasyTags ----
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+
 "--- Vundle --- git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
+
+" ---- ignore files ----
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.jpeg
 
 " ---- NerdTree ----
 Plugin 'scrooloose/nerdtree'
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$','\.o$']
 map <F3> :NERDTreeToggle<CR>
 map <F4> :NERDTreeFocus<CR>
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
 
 "---- Command-t ----
 Plugin 'wincent/command-t'
 map <F2> :CommandT<CR>
+
+"---- Multiple cursour ----
+Plugin 'terryma/vim-multiple-cursors'
 
 " ---- Python ----
 Plugin 'klen/python-mode'
@@ -53,13 +75,16 @@ let g:pymode_doc_key = 'K'
 let pymode_folding = 0
 
 " ---- Javascript ----
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
+Plugin 'othree/yajs.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'ternjs/tern_for_vim'
 let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 Plugin 'prettier/vim-prettier'
 " vue
 Plugin 'posva/vim-vue'
+
+Bundle 'reasonml-editor/vim-reason-plus'
 
 "---- GO ----
 Plugin 'fatih/vim-go'

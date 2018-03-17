@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/vladimir/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -62,40 +62,23 @@ plugins=(
     npm
     node
     gulp
+    zsh-autosuggestions
+    fabric
+    yarn
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 export LANG=ru_RU.UTF-8
 export LC_CTYPE=ru_RU.UTF-8
 
+# docker
 alias dk="docker"
 alias dkc="docker-compose"
-alias vim="/usr/local/bin/vim"
-alias vi="/usr/local/bin/vim"
+# switch keys
 alias ssh-bitbucket="ssh-add -D; ssh-add ~/.ssh/bitbucket"
-alias ssh-iw="ssh-add -D; ssh-add ~/.ssh/id_rsa"
-
-# before install : brew install zsh-syntax-highlighting
-source /usr/local/Cellar/zsh-syntax-highlighting/0.6.0/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# before install : brew install zsh-autosuggestions
-source /usr/local/Cellar/zsh-autosuggestions/0.4.0/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+alias ssh-iw="ssh-add -D; ssh-add ~/.ssh/iw"
+# tips
+alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+# PATH
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.yarn/bin

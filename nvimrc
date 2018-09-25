@@ -10,10 +10,12 @@ filetype plugin indent on     " обязательно!
 Plug 'tpope/vim-fugitive'
 Plug 'lokaltog/vim-easymotion'
 " Airline and settings
-Plug 'vim-airline/vim-airline'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_y = ''
-let g:airline_section_z = '%3l/%L:%3v'
+" Plug 'vim-airline/vim-airline'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_section_y = ''
+" let g:airline_section_z = '%3l/%L:%3v'
+" Lighline
+Plug 'itchyny/lightline.vim'
 
 " Deoplete
 Plug 'Shougo/deoplete.nvim'
@@ -26,18 +28,23 @@ let g:deoplete#enable_profile = 1
 
 " ALE is alternative to Syntastic
 Plug 'w0rp/ale'
-let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
-            \'python': ['autopep8'],
+            \'python': ['black'],
             \'javascript': ['prettier', 'eslint'],
             \'typescript': ['prettier', 'tslint'],
             \'go': ['gofmt'],
             \}
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 map <C-A-L> :ALEFix<CR>
-
 " ---- ignore files ----
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.jpeg
+
+" Prettier
+Plug 'prettier/vim-prettier', {'do': 'yarn install'}
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " ---- NerdTree ----
 Plug 'scrooloose/nerdtree'
@@ -50,6 +57,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 "---- Ctrlp ----
 Plug 'kien/ctrlp.vim'
 let g:ctrlp_custom_ignore = 'uploads\|node_modules\|DS_Store\|git'
+map <Leader>b :CtrlPBuffer<CR>
 " easytags
 
 "---- Multiple cursour ----
@@ -161,6 +169,7 @@ if (empty($TMUX))
   endif
 endif
 let g:airline_theme='one'
-set background=dark
+" set background=dark
+set background=light
 colorscheme one
 let g:one_allow_italics = 1

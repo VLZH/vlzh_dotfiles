@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="af-magic"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -65,6 +65,7 @@ plugins=(
     zsh-autosuggestions
     fabric
     yarn
+    aws
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -81,4 +82,9 @@ alias ssh-iw="ssh-add -D; ssh-add ~/.ssh/iw"
 # tips
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 # PATH
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.yarn/bin
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.yarn/bin:$HOME/Library/Python/3.6/bin
+export PATH=~/Library/Android/sdk/platform-tools:$PATH
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# GO
+export GOPATH=$HOME/go

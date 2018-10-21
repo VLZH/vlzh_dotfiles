@@ -55,7 +55,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 "---- Ctrlp ----
 Plug 'kien/ctrlp.vim'
 let g:ctrlp_custom_ignore = 'uploads\|node_modules\|DS_Store\|git'
-map <Leader-b> :CtrlPBuffer<CR>
+map <c-b> :CtrlPBuffer<CR>
 " easytags
 
 "---- Multiple cursour ----
@@ -127,6 +127,7 @@ Plug 'zchee/deoplete-go'
 "---- Theme ----
 Plug 'rakr/vim-one'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'Yggdroot/indentLine'
 
 " Close Vim-Plug
 call plug#end()

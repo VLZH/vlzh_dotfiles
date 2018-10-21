@@ -10,12 +10,10 @@ filetype plugin indent on     " обязательно!
 Plug 'tpope/vim-fugitive'
 Plug 'lokaltog/vim-easymotion'
 " Airline and settings
-" Plug 'vim-airline/vim-airline'
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_section_y = ''
-" let g:airline_section_z = '%3l/%L:%3v'
-" Lighline
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_y = ''
+let g:airline_section_z = '%3l/%L:%3v'
 
 " Deoplete
 Plug 'Shougo/deoplete.nvim'
@@ -28,7 +26,7 @@ let g:deoplete#enable_profile = 1
 
 " ALE is alternative to Syntastic
 Plug 'w0rp/ale'
-" let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
             \'python': ['black'],
             \'javascript': ['prettier', 'eslint'],
@@ -57,7 +55,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 "---- Ctrlp ----
 Plug 'kien/ctrlp.vim'
 let g:ctrlp_custom_ignore = 'uploads\|node_modules\|DS_Store\|git'
-map <Leader>b :CtrlPBuffer<CR>
+map <Leader-b> :CtrlPBuffer<CR>
 " easytags
 
 "---- Multiple cursour ----
@@ -87,6 +85,7 @@ Plug 'wakatime/vim-wakatime'
 " ---- Python ----
 Plug 'klen/python-mode'
 Plug 'zchee/deoplete-jedi'
+Plug 'plytophogy/vim-virtualenv'
 let g:deoplete#sources#jedi#python_path = 'python3'
 let g:pymode_python = 'python3'
 let g:pymode_lint_on_write = 0
@@ -127,6 +126,7 @@ Plug 'zchee/deoplete-go'
 
 "---- Theme ----
 Plug 'rakr/vim-one'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Close Vim-Plug
 call plug#end()
@@ -173,3 +173,27 @@ let g:airline_theme='one'
 set background=light
 colorscheme one
 let g:one_allow_italics = 1
+" Virtualenv
+" Function to activate a virtualenv in the embedded interpreter for
+" omnicomplete and other things like that.
+function LoadVirtualEnv(path)
+    let activate_this = a:path . '/bin/activate_this.py'
+    if getftype(a:path) == "dir" && filereadable(activate_this)
+        python << EOF
+import vim
+activate_this = vim.eval('l:activate_this')
+execfile(activate_this, dict(__file__=activate_this))
+EOF
+    endif
+endfunction
+
+" Load up a 'stable' virtualenv if one exists in ~/.virtualenv
+let defaultvirtualenv = "/.pyenv"
+
+" Only attempt to load this virtualenv if the defaultvirtualenv
+" actually exists, and we aren't running with a virtualenv active.
+if has("python")
+    if empty($VIRTUAL_ENV) && getftype(defaultvirtualenv) == "dir"
+        call LoadVirtualEnv(defaultvirtualenv)
+    endif
+endif

@@ -76,9 +76,7 @@ export LC_CTYPE=ru_RU.UTF-8
 # docker
 alias dk="docker"
 alias dkc="docker-compose"
-# switch keys
-alias ssh-bitbucket="ssh-add -D; ssh-add ~/.ssh/bitbucket"
-alias ssh-iw="ssh-add -D; ssh-add ~/.ssh/iw"
+alias vim="nvim"
 # tips
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 # PATH

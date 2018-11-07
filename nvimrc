@@ -29,20 +29,15 @@ Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
             \'python': ['black'],
-            \'javascript': ['prettier', 'eslint'],
-            \'typescript': ['prettier', 'tslint'],
+            \'javascript': ['prettier'],
+            \'typescript': ['prettier'],
+            \'json': ['prettier'],
             \'go': ['gofmt'],
             \}
-" let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 1
 map <C-A-L> :ALEFix<CR>
 " ---- ignore files ----
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.jpeg
-
-" Prettier
-Plug 'prettier/vim-prettier', {'do': 'yarn install'}
-let g:prettier#exec_cmd_async = 1
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 " ---- NerdTree ----
 Plug 'scrooloose/nerdtree'
@@ -56,6 +51,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 Plug 'kien/ctrlp.vim'
 let g:ctrlp_custom_ignore = 'uploads\|node_modules\|DS_Store\|git'
 map <c-b> :CtrlPBuffer<CR>
+map <c-t> :CtrlPTag<CR>
 " easytags
 
 "---- Multiple cursour ----
@@ -106,10 +102,6 @@ endfunction
 " Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
-" prettier
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 " vue
 Plug 'posva/vim-vue'
 " ternj
@@ -120,6 +112,12 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript'
 
+" ---- JSON ----
+Plug 'elzr/vim-json'
+
+" ---- JSON ----
+Plug 'mattn/emmet-vim'
+
 "---- GO ----
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
@@ -128,6 +126,7 @@ Plug 'zchee/deoplete-go'
 Plug 'rakr/vim-one'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Yggdroot/indentLine'
+let g:vim_json_syntax_conceal = 0
 
 " Close Vim-Plug
 call plug#end()

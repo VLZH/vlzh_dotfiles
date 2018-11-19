@@ -9,13 +9,14 @@ filetype plugin indent on     " обязательно!
 
 Plug 'tpope/vim-fugitive'
 Plug 'lokaltog/vim-easymotion'
-" Airline and settings
+
+" ---- Airline ----
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_y = ''
 let g:airline_section_z = '%3l/%L:%3v'
 
-" Deoplete
+" ---- Deoplete ----
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1 
@@ -24,9 +25,12 @@ let g:deoplete#file#enable_buffer_path = 1
 " profile
 let g:deoplete#enable_profile = 1
 
-" ALE is alternative to Syntastic
+" ---- ALE ----
 Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {
+    \'javascript': ['eslint'],
+\}
 let g:ale_fixers = {
             \'python': ['black'],
             \'javascript': ['prettier'],
@@ -48,11 +52,20 @@ let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
 "---- Ctrlp ----
-Plug 'kien/ctrlp.vim'
-let g:ctrlp_custom_ignore = 'uploads\|node_modules\|DS_Store\|git'
-map <c-b> :CtrlPBuffer<CR>
-map <c-t> :CtrlPTag<CR>
-" easytags
+"Plug 'kien/ctrlp.vim'
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/](doc|tmp|node_modules)',
+  "\ 'file': '\v\.(exe|so|dll)$',
+  "\ }
+"map <c-b> :CtrlPBuffer<CR>
+"map <c-t> :CtrlPTag<CR>
+
+"---- FZF ----
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+map <c-p> :GFiles<CR>
+map <c-b> :Buffers<CR>
+map <c-t> :Tags<CR>
 
 "---- Multiple cursour ----
 Plug 'terryma/vim-multiple-cursors'
@@ -71,11 +84,11 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Buffkill - closing of buffers without closing window
+"---- Buffkill ----
 Plug 'qpkorr/vim-bufkill'
 map <C-q> :BD<CR>
 
-" Wakatime
+"---- Wakatime ----
 Plug 'wakatime/vim-wakatime'
 
 " ---- Python ----
@@ -118,21 +131,26 @@ Plug 'elzr/vim-json'
 " ---- JSON ----
 Plug 'mattn/emmet-vim'
 
-"---- GO ----
+" ---- GO ----
 Plug 'fatih/vim-go'
 Plug 'zchee/deoplete-go'
 
-"---- Theme ----
-Plug 'rakr/vim-one'
+" ---- Themes ----
+Plug 'sonph/onehalf'
 Plug 'dracula/vim', { 'as': 'dracula' }
+
+" ---- indentLine ----
 Plug 'Yggdroot/indentLine'
 let g:vim_json_syntax_conceal = 0
 
 " Close Vim-Plug
 call plug#end()
 
+" Color scheme
+colorscheme dracula
+" let g:airline_theme='onehalfdark'
+
 let mapleader=","
-syntax on
 set hidden
 set number
 set backspace=indent,eol,start
@@ -140,14 +158,11 @@ set mousemodel=popup
 set hlsearch
 set autoindent noexpandtab tabstop=4 shiftwidth=4
 set laststatus=2
-" ---- Swap ----
-set noswapfile
-set nobackup
 " ---- Tabs ----
 set expandtab " spaces instead of tabs 
 set tabstop=4 " ширина табуляции
 set softtabstop=4 " ширина таба при использовании всесто него пробелов
-" ---- Buffers ----
+" ---- Hotkeys ----
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 map <C-K> :bnext<CR>
@@ -159,41 +174,3 @@ set clipboard=unnamedplus
 set foldmethod=syntax
 set foldlevelstart=128
 set foldcolumn=0
-" ---- Theme ----
-if (empty($TMUX))
-  if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-let g:airline_theme='one'
-" set background=dark
-set background=light
-colorscheme one
-let g:one_allow_italics = 1
-" Virtualenv
-" Function to activate a virtualenv in the embedded interpreter for
-" omnicomplete and other things like that.
-function LoadVirtualEnv(path)
-    let activate_this = a:path . '/bin/activate_this.py'
-    if getftype(a:path) == "dir" && filereadable(activate_this)
-        python << EOF
-import vim
-activate_this = vim.eval('l:activate_this')
-execfile(activate_this, dict(__file__=activate_this))
-EOF
-    endif
-endfunction
-
-" Load up a 'stable' virtualenv if one exists in ~/.virtualenv
-let defaultvirtualenv = "/.pyenv"
-
-" Only attempt to load this virtualenv if the defaultvirtualenv
-" actually exists, and we aren't running with a virtualenv active.
-if has("python")
-    if empty($VIRTUAL_ENV) && getftype(defaultvirtualenv) == "dir"
-        call LoadVirtualEnv(defaultvirtualenv)
-    endif
-endif

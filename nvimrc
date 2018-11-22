@@ -51,15 +51,6 @@ map <F4> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
-"---- Ctrlp ----
-"Plug 'kien/ctrlp.vim'
-"let g:ctrlp_custom_ignore = {
-  "\ 'dir':  '\v[\/](doc|tmp|node_modules)',
-  "\ 'file': '\v\.(exe|so|dll)$',
-  "\ }
-"map <c-b> :CtrlPBuffer<CR>
-"map <c-t> :CtrlPTag<CR>
-
 "---- FZF ----
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'

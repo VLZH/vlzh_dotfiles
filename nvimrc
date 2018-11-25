@@ -30,6 +30,7 @@ Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
     \'javascript': ['eslint'],
+    \'python': ['flake8', 'pylint'],
 \}
 let g:ale_fixers = {
             \'python': ['black'],
@@ -54,7 +55,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 "---- FZF ----
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-map <c-p> :GFiles<CR>
+map <c-p> :FZF<CR>
 map <c-b> :Buffers<CR>
 map <c-t> :Tags<CR>
 
@@ -129,6 +130,11 @@ Plug 'zchee/deoplete-go'
 " ---- Themes ----
 Plug 'sonph/onehalf'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'altercation/vim-colors-solarized', { 'as': 'solarized' }
+let g:solarized_termcolors=256
+Plug 'morhetz/gruvbox'
+set termguicolors
+let g:gruvbox_italic=1
 
 " ---- indentLine ----
 Plug 'Yggdroot/indentLine'
@@ -136,10 +142,6 @@ let g:vim_json_syntax_conceal = 0
 
 " Close Vim-Plug
 call plug#end()
-
-" Color scheme
-colorscheme dracula
-" let g:airline_theme='onehalfdark'
 
 let mapleader=","
 set hidden
@@ -165,3 +167,23 @@ set clipboard=unnamedplus
 set foldmethod=syntax
 set foldlevelstart=128
 set foldcolumn=0
+" ---- Functions ----
+function! ThDracula()
+    colorscheme dracula
+    let g:airline_theme='dracula'
+    set background=dark
+endfunction
+
+function! ThGruvL()
+    colorscheme gruvbox
+    let g:airline_theme='gruvbox'
+    set background=light
+endfunction
+
+function! ThGruvD()
+    colorscheme gruvbox
+    let g:airline_theme='gruvbox'
+    set background=dark
+endfunction
+
+call ThGruvL()

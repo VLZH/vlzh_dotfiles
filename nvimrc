@@ -30,7 +30,7 @@ Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
     \'javascript': ['eslint'],
-    \'python': ['flake8', 'pylint'],
+    \'python': ['flake8'],
 \}
 let g:ale_fixers = {
             \'python': ['black'],
@@ -98,11 +98,6 @@ let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
 let pymode_folding = 0
 
-function Py2()
-    let g:pymode_python = 'python3'
-    let g:deoplete#sources#jedi#python_path = 'python3'
-endfunction
-
 " ---- Javascript ----
 " Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
@@ -112,6 +107,9 @@ Plug 'posva/vim-vue'
 " ternj
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+" ---- Styled-components ----
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ---- Typescript ----
 Plug 'HerringtonDarkholme/yats.vim'

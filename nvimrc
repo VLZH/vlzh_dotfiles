@@ -17,19 +17,16 @@ let g:airline_section_y = ''
 let g:airline_section_z = '%3l/%L:%3v'
 
 " ---- Deoplete ----
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1 
-let g:deoplete#auto_completion_start_length = 0
-let g:deoplete#file#enable_buffer_path = 1
-" profile
-let g:deoplete#enable_profile = 1
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+let g:ycm_show_diagnostics_ui = 0
+map <leader>jd :YcmCompleter GoTo<CR>
 
 " ---- ALE ----
 Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
     \'javascript': ['eslint'],
+    \'typescript': ['tslint'],
     \'python': ['flake8'],
 \}
 let g:ale_fixers = {
@@ -41,7 +38,7 @@ let g:ale_fixers = {
             \}
 let g:ale_fix_on_save = 1
 map <C-A-L> :ALEFix<CR>
-" ---- ignore files ----
+" ---- ale ignore files ----
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.jpeg
 
 " ---- NerdTree ----
@@ -83,20 +80,10 @@ map <C-q> :BD<CR>
 "---- Wakatime ----
 Plug 'wakatime/vim-wakatime'
 
+" ---- CSS ----
+Plug 'hail2u/vim-css3-syntax'
+
 " ---- Python ----
-Plug 'klen/python-mode'
-Plug 'zchee/deoplete-jedi'
-Plug 'plytophogy/vim-virtualenv'
-let g:deoplete#sources#jedi#python_path = 'python3'
-let g:pymode_python = 'python3'
-let g:pymode_lint_on_write = 0
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_lookup_project = 0
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
-let pymode_folding = 0
 
 " ---- Javascript ----
 " Plug 'othree/yajs.vim'
@@ -105,25 +92,23 @@ let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 " vue
 Plug 'posva/vim-vue'
 " ternj
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 " ---- Styled-components ----
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ---- Typescript ----
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript'
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
 
 " ---- JSON ----
 Plug 'elzr/vim-json'
 
-" ---- JSON ----
+" ---- EMMET ----
 Plug 'mattn/emmet-vim'
 
 " ---- GO ----
 Plug 'fatih/vim-go'
-Plug 'zchee/deoplete-go'
+let g:go_version_warning = 0
 
 " ---- Themes ----
 Plug 'sonph/onehalf'
@@ -133,6 +118,12 @@ let g:solarized_termcolors=256
 Plug 'morhetz/gruvbox'
 set termguicolors
 let g:gruvbox_italic=1
+
+" ---- Font ----
+if has("gui_running")
+    call MacSetFont("Fira Code", 12)
+    call MacSetFontShouldAntialias(1)
+endif
 
 " ---- indentLine ----
 Plug 'Yggdroot/indentLine'
@@ -184,4 +175,15 @@ function! ThGruvD()
     set background=dark
 endfunction
 
+function! ALEShowListEnable()
+    let g:ale_open_list = 1
+    let g:ale_keep_list_window_open = 0
+endfunction
+
+function! ALEShowListDisable()
+    let g:ale_open_list = 0
+    let g:ale_keep_list_window_open = 0
+endfunction
+
 call ThGruvL()
+call ALEShowListDisable()

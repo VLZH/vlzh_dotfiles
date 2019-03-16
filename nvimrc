@@ -145,10 +145,6 @@ set mousemodel=popup
 set hlsearch
 set autoindent noexpandtab tabstop=4 shiftwidth=4
 set laststatus=2
-" ---- Tabs ----
-set expandtab " spaces instead of tabs 
-set tabstop=4 " ширина табуляции
-set softtabstop=4 " ширина таба при использовании всесто него пробелов
 " ---- Hotkeys ----
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
@@ -162,7 +158,23 @@ set foldmethod=syntax
 set foldlevelstart=128
 set foldcolumn=0
 
-" ---- Functions ----
+" ---- Functions TABS ----
+function! TabWidth4()
+    set expandtab " spaces instead of tabs 
+    set tabstop=4 " ширина табуляции
+    set softtabstop=4 " ширина таба при использовании всесто него пробелов
+    set shiftwidth=4 " ширина таба при использовании всесто него пробелов
+endfunction
+
+function! TabWidth2()
+    set expandtab " spaces instead of tabs 
+    set tabstop=2 " ширина табуляции
+    set softtabstop=2 " ширина таба при использовании всесто него пробелов
+    set shiftwidth=2 " ширина таба при использовании всесто него пробелов
+endfunction
+call TabWidth4()
+
+" ---- Functions THEMES ----
 function! ThDracula()
     colorscheme dracula
     let g:airline_theme='dracula'
@@ -187,6 +199,9 @@ function! ThAmpresent()
     set background=light
 endfunction
 
+call ThGruvL()
+
+" ---- Functions ALE ----
 function! ALEShowListEnable()
     let g:ale_open_list = 1
     let g:ale_keep_list_window_open = 0
@@ -196,7 +211,5 @@ function! ALEShowListDisable()
     let g:ale_open_list = 0
     let g:ale_keep_list_window_open = 0
 endfunction
-
-
-call ThGruvL()
 call ALEShowListDisable()
+

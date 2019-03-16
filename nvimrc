@@ -33,6 +33,7 @@ let g:ale_fixers = {
             \'python': ['black'],
             \'javascript': ['prettier'],
             \'typescript': ['prettier'],
+            \'ts': ['prettier'],
             \'json': ['prettier'],
             \'go': ['gofmt'],
             \}
@@ -48,6 +49,9 @@ map <F3> :NERDTreeToggle<CR>
 map <F4> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
+
+" ---- Surround ----
+Plug 'tpope/vim-surround'
 
 "---- FZF ----
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -114,6 +118,7 @@ let g:go_version_warning = 0
 Plug 'sonph/onehalf'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'altercation/vim-colors-solarized', { 'as': 'solarized' }
+Plug 'muellan/am-colors'
 let g:solarized_termcolors=256
 Plug 'morhetz/gruvbox'
 set termguicolors
@@ -156,6 +161,7 @@ set clipboard=unnamedplus
 set foldmethod=syntax
 set foldlevelstart=128
 set foldcolumn=0
+
 " ---- Functions ----
 function! ThDracula()
     colorscheme dracula
@@ -175,6 +181,12 @@ function! ThGruvD()
     set background=dark
 endfunction
 
+function! ThAmpresent()
+    colorscheme ampresent
+    let g:airline_theme='gruvbox'
+    set background=light
+endfunction
+
 function! ALEShowListEnable()
     let g:ale_open_list = 1
     let g:ale_keep_list_window_open = 0
@@ -184,6 +196,7 @@ function! ALEShowListDisable()
     let g:ale_open_list = 0
     let g:ale_keep_list_window_open = 0
 endfunction
+
 
 call ThGruvL()
 call ALEShowListDisable()

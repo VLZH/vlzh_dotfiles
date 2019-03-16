@@ -67,6 +67,7 @@ plugins=(
     fabric
     yarn
     aws
+    ansible
 )
 
 source $ZSH/oh-my-zsh.sh

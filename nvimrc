@@ -10,6 +10,8 @@ filetype plugin indent on     " обязательно!
 Plug 'tpope/vim-fugitive'
 Plug 'lokaltog/vim-easymotion'
 
+Plug 'floobits/floobits-neovim'
+
 " ---- Airline ----
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
@@ -82,7 +84,7 @@ Plug 'qpkorr/vim-bufkill'
 map <C-q> :BD<CR>
 
 "---- Wakatime ----
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 " ---- CSS ----
 Plug 'hail2u/vim-css3-syntax'
@@ -94,7 +96,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 " vue
-Plug 'posva/vim-vue'
+" Plug 'posva/vim-vue'
 " ternj
 
 " ---- Styled-components ----
@@ -130,9 +132,13 @@ if has("gui_running")
     call MacSetFontShouldAntialias(1)
 endif
 
+" ---- Icons ----
+Plug 'ryanoasis/vim-devicons'
+
 " ---- indentLine ----
 Plug 'Yggdroot/indentLine'
 let g:vim_json_syntax_conceal = 0
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " Close Vim-Plug
 call plug#end()

@@ -10,7 +10,8 @@ filetype plugin indent on     " обязательно!
 Plug 'tpope/vim-fugitive'
 Plug 'lokaltog/vim-easymotion'
 
-Plug 'floobits/floobits-neovim'
+" ---- floobits ----
+" Plug 'floobits/floobits-neovim'
 
 " ---- Airline ----
 Plug 'vim-airline/vim-airline'
@@ -62,16 +63,6 @@ map <c-p> :FZF<CR>
 map <c-b> :Buffers<CR>
 map <c-t> :Tags<CR>
 
-"---- Multiple cursour ----
-Plug 'terryma/vim-multiple-cursors'
-function! Multiple_cursors_before()
-    let b:deoplete_disable_auto_complete = 1
-endfunction
-
-function! Multiple_cursors_after()
-    let b:deoplete_disable_auto_complete = 0
-endfunction
-
 "---- Nerd commenter ----
 Plug 'scrooloose/nerdcommenter'
 
@@ -92,18 +83,15 @@ Plug 'hail2u/vim-css3-syntax'
 " ---- Python ----
 
 " ---- Javascript ----
-" Plug 'othree/yajs.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'isRuslan/vim-es6'
 Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
-" vue
-" Plug 'posva/vim-vue'
-" ternj
 
 " ---- Styled-components ----
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ---- Typescript ----
-Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 
 " ---- JSON ----
@@ -151,11 +139,14 @@ set mousemodel=popup
 set hlsearch
 set autoindent noexpandtab tabstop=4 shiftwidth=4
 set laststatus=2
+set noswapfile
+
 " ---- Hotkeys ----
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 map <C-K> :bnext<CR>
 map <C-J> :bprev<CR>
+
 " ---- Mouse ----
 set mouse=a
 set clipboard=unnamedplus
@@ -218,4 +209,32 @@ function! ALEShowListDisable()
     let g:ale_keep_list_window_open = 0
 endfunction
 call ALEShowListDisable()
+
+" ---- YAML correct indentation ----
+
+if exists("b:did_indent")
+  finish
+endif
+"runtime! indent/ruby.vim
+"unlet! b:did_indent
+let b:did_indent = 1
+
+setlocal autoindent sw=2 et
+setlocal indentexpr=GetYamlIndent()
+setlocal indentkeys=o,O,*<Return>,!^F
+
+function! GetYamlIndent()
+  let lnum = v:lnum - 1
+  if lnum == 0
+    return 0
+  endif
+  let line = substitute(getline(lnum),'\s\+$','','')
+  let indent = indent(lnum)
+  let increase = indent + &sw
+  if line =~ ':$'
+    return increase
+  else
+    return indent
+  endif
+endfunction
 

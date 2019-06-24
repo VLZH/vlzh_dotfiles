@@ -91,6 +91,12 @@ alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.yarn/bin:$HOME/Library/Python/3.6/bin
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+# ALACRITTY
+alias alacritty-colorscheme="alacritty-colorscheme -C ~/.alacritty_themes"
+alias alacritty-colorscheme-dracula="alacritty-colorscheme -t dracula.yaml"
+alias alacritty-colorscheme-gruvbox_dark="alacritty-colorscheme -t gruvbox_dark.yaml"
+alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_light.yaml"
+alias alacritty-colorscheme-solarized_light="alacritty-colorscheme -t solarized_light.yaml"
 # GO
 export GOPATH=$HOME/go
 # BAT

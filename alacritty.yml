@@ -126,99 +126,53 @@ render_timer: false
 draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night Bright)
+# color_start
+# dracula.yaml
+# color_start
+# gruvbox_dark.yaml
+# color_start
+# gruvbox_dark.yaml
+# color_start
+# gruvbox_light.yaml
+# color_start
+# solarized_light.yaml
+# color_start
+# dracula.yaml
+# color_start
+# gruvbox_light.yaml
+# color_start
+# dracula.yaml
+# color_start
 colors:
   # Default colors
-  #primary:
-    #background: '0x000000'
-    #foreground: '0xeaeaea'
-
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
-    #dim_foreground: '0x9a9a9a'
-    #bright_foreground: '0xffffff'
-
-  # Cursor colors
-  #
-  # Colors which should be used to draw the terminal cursor. If these are unset,
-  # the cursor color will be the inverse of the cell color.
-  #cursor:
-  #  text: '0x000000'
-  #  cursor: '0xffffff'
-
-  # Normal colors
-  #normal:
-    #black:   '0x000000'
-    #red:     '0xd54e53'
-    #green:   '0xb9ca4a'
-    #yellow:  '0xe6c547'
-    #blue:    '0x7aa6da'
-    #magenta: '0xc397d8'
-    #cyan:    '0x70c0ba'
-    #white:   '0xffffff'
-
-  # Bright colors
-  #bright:
-    #black:   '0x666666'
-    #red:     '0xff3334'
-    #green:   '0x9ec400'
-    #yellow:  '0xe7c547'
-    #blue:    '0x7aa6da'
-    #magenta: '0xb77ee0'
-    #cyan:    '0x54ced6'
-    #white:   '0xffffff'
-
-  # Dim colors
-  #
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
-  dim:
-    black:   '0x333333'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xdddddd'
-
-  # Colors (Gruvbox light)
   primary:
-    # hard contrast: background = '0xf9f5d7'
-    background: '0xfbf1c7'
-    # soft contrast: background = '0xf2e5bc'
-    foreground: '0x3c3836'
-
+    background: '0x282a36'
+    foreground: '0xf8f8f2'
+ 
   # Normal colors
   normal:
-    black:   '0xfbf1c7'
-    red:     '0xcc241d'
-    green:   '0x98971a'
-    yellow:  '0xd79921'
-    blue:    '0x458588'
-    magenta: '0xb16286'
-    cyan:    '0x689d6a'
-    white:   '0x7c6f64'
-
+    black:   '0x000000'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xbd93f9'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xbbbbbb'
+ 
   # Bright colors
   bright:
-    black:   '0x928374'
-    red:     '0x9d0006'
-    green:   '0x79740e'
-    yellow:  '0xb57614'
-    blue:    '0x076678'
-    magenta: '0x8f3f71'
-    cyan:    '0x427b58'
-    white:   '0x3c3836'
+    black:   '0x555555'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xcaa9fa'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xffffff'
+# color_end
 
-  # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #indexed_colors:
-  #  - { index: 16, color: '0x000000' }
+# color_end
 
 # Visual Bell
 #

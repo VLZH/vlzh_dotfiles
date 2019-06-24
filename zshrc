@@ -53,27 +53,33 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    # tools
+    httpie
     git
-    brew
-    docker
-    docker-compose
-    django
-    python
-    pip
-    npm
-    node
-    gulp
-    zsh-autosuggestions
-    fabric
-    yarn
     aws
     ansible
+    fabric
+    # managers
+    brew
+    npm
+    yarn
+    pip
+    # docker
+    docker
+    docker-compose
+    # python
+    django
+    python
+    # js
+    node
+    gulp
+    # another
+    fast-syntax-highlighting # [install] git clone https://github.com/zdharma/fast-syntax-highlighting.git \ ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+    zsh-autosuggestions # [install] git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 )
 
 source $ZSH/oh-my-zsh.sh
-
-export LANG=ru_RU.UTF-8
-export LC_CTYPE=ru_RU.UTF-8
 
 # docker
 alias dk="docker"
@@ -85,15 +91,16 @@ alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.yarn/bin:$HOME/Library/Python/3.6/bin
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-# PLUGINS
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # GO
 export GOPATH=$HOME/go
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# BAT
 export BAT_THEME="TwoDark"
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_COMPLETION_OPTS="--preview '(bat --color=always {} || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_T_OPTS="$FZF_COMPLETION_OPTS"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!.vscode/*" --glob "!node_modules/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# GPG
+GPG_TTY=$(tty)

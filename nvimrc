@@ -19,8 +19,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_y = ''
 let g:airline_section_z = '%3l/%L:%3v'
 
-" ---- Deoplete ----
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" ---- YouCompleteMe ----
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 let g:ycm_show_diagnostics_ui = 0
 map <leader>jd :YcmCompleter GoTo<CR>
 
@@ -28,6 +28,7 @@ map <leader>jd :YcmCompleter GoTo<CR>
 Plug 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
+    \'go': ['golangci-lint', 'gofmt', 'golint'],
     \'javascript': ['eslint'],
     \'typescript': ['tslint'],
     \'python': ['flake8'],
@@ -101,7 +102,7 @@ Plug 'elzr/vim-json'
 Plug 'mattn/emmet-vim'
 
 " ---- GO ----
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 let g:go_version_warning = 0
 
 " ---- Themes ----

@@ -13,11 +13,8 @@ Plug 'lokaltog/vim-easymotion'
 " ---- floobits ----
 " Plug 'floobits/floobits-neovim'
 
-" ---- Airline ----
-Plug 'vim-airline/vim-airline'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_y = ''
-let g:airline_section_z = '%3l/%L:%3v'
+" ---- Lightline ----
+Plug 'itchyny/lightline.vim'
 
 " ---- YouCompleteMe ----
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
@@ -26,7 +23,6 @@ map <leader>jd :YcmCompleter GoTo<CR>
 
 " ---- ALE ----
 Plug 'w0rp/ale'
-let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
     \'go': ['golangci-lint', 'gofmt', 'golint'],
     \'javascript': ['eslint'],
@@ -42,6 +38,8 @@ let g:ale_fixers = {
             \'go': ['gofmt'],
             \}
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 0
+let g:ale_set_highlights = 0
 map <C-A-L> :ALEFix<CR>
 " ---- ale ignore files ----
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.jpeg
@@ -141,6 +139,9 @@ set hlsearch
 set autoindent noexpandtab tabstop=4 shiftwidth=4
 set laststatus=2
 set noswapfile
+" #
+set autoread
+set termguicolors
 
 " ---- Hotkeys ----
 map <C-l> <C-w><Right>

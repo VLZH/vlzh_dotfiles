@@ -10,11 +10,13 @@ filetype plugin indent on     " обязательно!
 Plug 'tpope/vim-fugitive'
 Plug 'lokaltog/vim-easymotion'
 
-" ---- floobits ----
-" Plug 'floobits/floobits-neovim'
-
 " ---- Lightline ----
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+let g:lightline = {}
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ---- YouCompleteMe ----
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
@@ -73,9 +75,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'qpkorr/vim-bufkill'
 map <C-q> :BD<CR>
 
-"---- Wakatime ----
-" Plug 'wakatime/vim-wakatime'
-
 " ---- CSS ----
 Plug 'hail2u/vim-css3-syntax'
 
@@ -83,7 +82,6 @@ Plug 'hail2u/vim-css3-syntax'
 
 " ---- Javascript ----
 Plug 'pangloss/vim-javascript'
-Plug 'isRuslan/vim-es6'
 Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 
@@ -110,7 +108,6 @@ Plug 'altercation/vim-colors-solarized', { 'as': 'solarized' }
 Plug 'muellan/am-colors'
 let g:solarized_termcolors=256
 Plug 'morhetz/gruvbox'
-set termguicolors
 let g:gruvbox_italic=1
 
 " ---- Font ----

@@ -107,6 +107,13 @@ export FZF_COMPLETION_OPTS="--preview '(bat --color=always {} || cat {} || tree 
 export FZF_CTRL_T_OPTS="$FZF_COMPLETION_OPTS"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!.vscode/*" --glob "!node_modules/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# EXA
+if [ -n $(command -v exa) ]; then
+  alias ls="exa"
+  alias la="exa -lah"
+  alias l="exa -lah"
+  alias ll="exa -lh"
+fi
 
 # GPG
 GPG_TTY=$(tty)

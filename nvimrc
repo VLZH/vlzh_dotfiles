@@ -7,16 +7,19 @@ filetype plugin indent on     " обязательно!
 " Plugins
 " =============================================================================
 
-Plug 'tpope/vim-fugitive'
 Plug 'lokaltog/vim-easymotion'
 
+" ---- eleline ----
+Plug 'liuchengxu/eleline.vim'
+set laststatus=2
+
 " ---- Lightline ----
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-let g:lightline = {}
-let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
+"Plug 'itchyny/lightline.vim'
+"Plug 'mengelbrecht/lightline-bufferline'
+"let g:lightline = {}
+"let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+"let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+"let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ---- YouCompleteMe ----
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
@@ -43,8 +46,6 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 let g:ale_set_highlights = 0
 map <C-A-L> :ALEFix<CR>
-" ---- ale ignore files ----
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.jpeg
 
 " ---- NerdTree ----
 Plug 'scrooloose/nerdtree'
@@ -68,7 +69,8 @@ map <c-t> :Tags<CR>
 Plug 'scrooloose/nerdcommenter'
 
 "---- Git ----
-Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "---- Buffkill ----
@@ -105,8 +107,9 @@ let g:go_version_warning = 0
 Plug 'sonph/onehalf'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'altercation/vim-colors-solarized', { 'as': 'solarized' }
-Plug 'muellan/am-colors'
 let g:solarized_termcolors=256
+Plug 'muellan/am-colors'
+Plug 'liuchengxu/space-vim-theme'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
 
@@ -117,7 +120,7 @@ if has("gui_running")
 endif
 
 " ---- Icons ----
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 
 " ---- indentLine ----
 Plug 'Yggdroot/indentLine'
@@ -128,16 +131,23 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 call plug#end()
 
 let mapleader=","
-set hidden
 set number
-set backspace=indent,eol,start
-set mousemodel=popup
-set hlsearch
 set autoindent noexpandtab tabstop=4 shiftwidth=4
-set laststatus=2
+set backspace=indent,eol,start
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg,*.jpeg
+set clipboard=unnamedplus
+" -
+set hidden
+set hlsearch
+set nocursorcolumn
+set nocursorline
+set norelativenumber
+" swap etc
+set history=1000
+set undolevels=1000
 set noswapfile
+set nobackup
 " #
-set autoread
 set termguicolors
 
 " ---- Hotkeys ----
@@ -147,12 +157,10 @@ map <C-K> :bnext<CR>
 map <C-J> :bprev<CR>
 
 " ---- Mouse ----
-set mouse=a
-set clipboard=unnamedplus
+"set mouse=a
 " ---- Folding ----
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevelstart=128
-set foldcolumn=0
 
 " ---- Functions TABS ----
 function! TabWidth4()
@@ -195,7 +203,17 @@ function! ThAmpresent()
     set background=light
 endfunction
 
-call ThGruvL()
+function! ThSpaceL()
+    colorscheme space_vim_theme
+    set background=light
+endfunction
+
+function! ThSpaceD()
+    colorscheme space_vim_theme
+    set background=dark
+endfunction
+
+call ThSpaceL()
 
 " ---- Functions ALE ----
 function! ALEShowListEnable()

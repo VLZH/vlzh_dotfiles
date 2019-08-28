@@ -84,6 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # docker
 alias dk="docker"
 alias dkc="docker-compose"
+alias dkm="docker-machine"
 alias vim="nvim"
 # tips
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"

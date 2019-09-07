@@ -115,6 +115,10 @@ if [ -n $(command -v exa) ]; then
   alias l="exa -lah"
   alias ll="exa -lh"
 fi
+# PANDOC
+rmd () {
+  pandoc $1 | lynx -stdin
+}
 
 # GPG
 GPG_TTY=$(tty)

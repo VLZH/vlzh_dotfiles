@@ -9,22 +9,17 @@ filetype plugin indent on     " обязательно!
 
 Plug 'lokaltog/vim-easymotion'
 
-" ---- eleline ----
-Plug 'liuchengxu/eleline.vim'
-set laststatus=2
-
 " ---- Lightline ----
-"Plug 'itchyny/lightline.vim'
-"Plug 'mengelbrecht/lightline-bufferline'
-"let g:lightline = {}
-"let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
-"let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-"let g:lightline.component_type   = {'buffers': 'tabsel'}
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+let g:lightline = {}
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
 
-" ---- YouCompleteMe ----
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-let g:ycm_show_diagnostics_ui = 0
-map <leader>jd :YcmCompleter GoTo<CR>
+" ---- Deoplete ----
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
 
 " ---- ALE ----
 Plug 'w0rp/ale'
@@ -43,7 +38,6 @@ let g:ale_fixers = {
             \'go': ['gofmt'],
             \}
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 0
 let g:ale_set_highlights = 0
 map <C-A-L> :ALEFix<CR>
 
@@ -81,10 +75,12 @@ map <C-q> :BD<CR>
 Plug 'hail2u/vim-css3-syntax'
 
 " ---- Python ----
+Plug 'deoplete-plugins/deoplete-jedi'
 
 " ---- Javascript ----
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'carlitux/deoplete-ternjs'
 let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 
 " ---- Styled-components ----
@@ -101,6 +97,7 @@ Plug 'mattn/emmet-vim'
 
 " ---- GO ----
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:go_version_warning = 0
 
 " ---- Themes ----
@@ -118,9 +115,6 @@ if has("gui_running")
     call MacSetFont("Fira Code", 12)
     call MacSetFontShouldAntialias(1)
 endif
-
-" ---- Icons ----
-"Plug 'ryanoasis/vim-devicons'
 
 " ---- indentLine ----
 Plug 'Yggdroot/indentLine'
@@ -157,7 +151,7 @@ map <C-K> :bnext<CR>
 map <C-J> :bprev<CR>
 
 " ---- Mouse ----
-"set mouse=a
+set mouse=a
 " ---- Folding ----
 set foldmethod=indent
 set foldlevelstart=128

@@ -8,6 +8,7 @@ filetype plugin indent on     " обязательно!
 " =============================================================================
 
 Plug 'lokaltog/vim-easymotion'
+Plug 'godlygeek/tabular'
 
 " ---- Lightline ----
 Plug 'itchyny/lightline.vim'
@@ -18,8 +19,11 @@ let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ---- Deoplete ----
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"let g:deoplete#enable_at_startup = 1
+
+" ---- COC ----
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " ---- ALE ----
 Plug 'w0rp/ale'
@@ -58,6 +62,7 @@ Plug 'junegunn/fzf.vim'
 map <c-p> :FZF<CR>
 map <c-b> :Buffers<CR>
 map <c-t> :Tags<CR>
+let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
 
 "---- Nerd commenter ----
 Plug 'scrooloose/nerdcommenter'
@@ -74,6 +79,11 @@ map <C-q> :BD<CR>
 " ---- CSS ----
 Plug 'hail2u/vim-css3-syntax'
 
+" ---- Markdown ----
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
 " ---- Python ----
 Plug 'deoplete-plugins/deoplete-jedi'
 
@@ -87,7 +97,7 @@ let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ---- Typescript ----
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim' " syntax highlighting
 
 " ---- JSON ----
 Plug 'elzr/vim-json'

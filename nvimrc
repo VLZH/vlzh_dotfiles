@@ -24,26 +24,41 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ---- COC ----
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
 
 " ---- ALE ----
-Plug 'w0rp/ale'
-let g:ale_linters = {
-    \'go': ['golangci-lint', 'gofmt', 'golint'],
-    \'javascript': ['eslint'],
-    \'typescript': ['tslint'],
-    \'python': ['flake8'],
-\}
-let g:ale_fixers = {
-            \'python': ['black'],
-            \'javascript': ['prettier'],
-            \'typescript': ['prettier'],
-            \'ts': ['prettier'],
-            \'json': ['prettier'],
-            \'go': ['gofmt'],
-            \}
-let g:ale_fix_on_save = 1
-let g:ale_set_highlights = 0
-map <C-A-L> :ALEFix<CR>
+ Plug 'w0rp/ale'
+ let g:ale_linters = {
+     \'go': ['golangci-lint', 'gofmt', 'golint'],
+     \'javascript': ['eslint'],
+     \'typescript': ['tslint'],
+     \'python': ['flake8'],
+ \}
+ let g:ale_fixers = {
+             \'python': ['black'],
+             \'javascript': ['prettier'],
+             \'typescript': ['prettier', 'tslint'],
+             \'ts': ['prettier'],
+             \'json': ['prettier'],
+             \'go': ['gofmt'],
+             \}
+ let g:ale_fix_on_save = 0
+ let g:ale_set_highlights = 0
+ map <C-A-L> :ALEFix<CR>
 
 " ---- NerdTree ----
 Plug 'scrooloose/nerdtree'

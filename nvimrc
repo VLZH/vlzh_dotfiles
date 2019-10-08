@@ -10,6 +10,9 @@ filetype plugin indent on     " обязательно!
 Plug 'lokaltog/vim-easymotion'
 Plug 'godlygeek/tabular'
 
+" ---- EMMET ----
+Plug 'mattn/emmet-vim'
+
 " ---- Lightline ----
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -117,8 +120,8 @@ Plug 'HerringtonDarkholme/yats.vim' " syntax highlighting
 " ---- JSON ----
 Plug 'elzr/vim-json'
 
-" ---- EMMET ----
-Plug 'mattn/emmet-vim'
+" ---- Caddyfile ----
+Plug 'isobit/vim-caddyfile'
 
 " ---- GO ----
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }

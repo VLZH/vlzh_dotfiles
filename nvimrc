@@ -22,14 +22,14 @@ let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ---- Deoplete ----
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
 
 " ---- COC ----
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"function! CocCurrentFunction()
+    "return get(b:, 'coc_current_function', '')
+"endfunction
 
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -46,7 +46,7 @@ let g:lightline = {
 " ---- ALE ----
  Plug 'w0rp/ale'
  let g:ale_linters = {
-     \'go': ['golangci-lint', 'gofmt', 'golint'],
+     \'go': ['gofmt', 'golangci-lint', 'golint'],
      \'javascript': ['eslint'],
      \'typescript': ['tslint'],
      \'python': ['flake8'],
@@ -54,6 +54,7 @@ let g:lightline = {
  let g:ale_fixers = {
              \'python': ['black'],
              \'javascript': ['prettier'],
+             \'html': ['prettier'],
              \'typescript': ['prettier', 'tslint'],
              \'ts': ['prettier'],
              \'json': ['prettier'],
@@ -116,6 +117,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ---- Typescript ----
 Plug 'HerringtonDarkholme/yats.vim' " syntax highlighting
+Plug 'mhartington/nvim-typescript'
 
 " ---- JSON ----
 Plug 'elzr/vim-json'
@@ -127,6 +129,7 @@ Plug 'isobit/vim-caddyfile'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:go_version_warning = 0
+let g:ale_go_golangci_lint_options = '--fast'
 
 " ---- Themes ----
 Plug 'sonph/onehalf'

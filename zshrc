@@ -55,10 +55,8 @@ ZSH_THEME="robbyrussell"
 plugins=(
     # tools
     httpie
-    git
     aws
     ansible
-    fabric
     # managers
     brew
     npm
@@ -70,6 +68,8 @@ plugins=(
     # python
     django
     python
+    # go
+    golang
     # js
     node
     gulp
@@ -81,6 +81,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# coreutils(mac only)
+if [ -n $(command -v gcp) ]; then
+  alias cp="gcp"
+fi
 # docker
 alias dk="docker"
 alias dkc="docker-compose"
@@ -90,6 +94,7 @@ alias vim="nvim"
 # tips
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 # PATH
+export PATH=$PATH:/usr/local/sbin
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.yarn/bin:$HOME/Library/Python/3.6/bin
 export PATH=~/Library/Android/sdk/platform-tools:$PATH
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
@@ -101,6 +106,7 @@ alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_ligh
 alias alacritty-colorscheme-solarized_light="alacritty-colorscheme -t solarized_light.yaml"
 # GO
 export GOPATH=$HOME/go
+export GO111MODULE=on
 # BAT
 export BAT_THEME="TwoDark"
 # FZF

@@ -105,6 +105,7 @@ let g:vim_markdown_conceal_code_blocks = 0
 
 " ---- Python ----
 Plug 'deoplete-plugins/deoplete-jedi'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " ---- Javascript ----
 Plug 'pangloss/vim-javascript'

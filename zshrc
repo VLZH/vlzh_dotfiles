@@ -68,6 +68,7 @@ plugins=(
     # python
     django
     python
+    poetry
     # go
     golang
     # js
@@ -78,13 +79,10 @@ plugins=(
     zsh-autosuggestions # [install] git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 )
+setopt HIST_FIND_NO_DUPS
 
 source $ZSH/oh-my-zsh.sh
 
-# coreutils(mac only)
-if [ -n $(command -v gcp) ]; then
-  alias cp="gcp"
-fi
 # docker
 alias dk="docker"
 alias dkc="docker-compose"

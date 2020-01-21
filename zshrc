@@ -68,7 +68,6 @@ plugins=(
     # python
     django
     python
-    poetry
     # go
     golang
     # js

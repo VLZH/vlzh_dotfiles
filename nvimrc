@@ -48,7 +48,7 @@ let g:lightline = {
  let g:ale_linters = {
      \'go': ['gofmt', 'golangci-lint', 'golint'],
      \'javascript': ['eslint'],
-     \'typescript': ['tslint'],
+     \'typescript': ['eslint'],
      \'python': ['flake8'],
  \}
  let g:ale_fixers = {

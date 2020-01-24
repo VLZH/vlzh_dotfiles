@@ -59,6 +59,7 @@ let g:lightline = {
              \'ts': ['prettier'],
              \'json': ['prettier'],
              \'go': ['gofmt'],
+             \'yaml': ['prettier'],
              \}
  let g:ale_fix_on_save = 0
  let g:ale_set_highlights = 0
@@ -239,7 +240,7 @@ function! ThSpaceD()
     set background=dark
 endfunction
 
-call ThSpaceL()
+call ThAmpresent()
 
 " ---- Functions ALE ----
 function! ALEShowListEnable()

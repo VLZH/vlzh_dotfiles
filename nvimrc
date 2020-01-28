@@ -7,6 +7,11 @@ filetype plugin indent on     " обязательно!
 " Plugins
 " =============================================================================
 
+" ---- VimWiki ----
+Plug 'vimwiki/vimwiki'
+let wiki = {}
+let wiki.automatic_nested_syntaxes = 0
+
 Plug 'lokaltog/vim-easymotion'
 Plug 'godlygeek/tabular'
 
@@ -20,17 +25,6 @@ let g:lightline = {}
 let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
-
-" ---- Deoplete ----
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
-
-" ---- COC ----
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"function! CocCurrentFunction()
-    "return get(b:, 'coc_current_function', '')
-"endfunction
-
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -42,6 +36,26 @@ let g:lightline = {
       \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
+
+" ---- Deoplete ----
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
+" ---- vim-lsp ----
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'lighttiger2505/deoplete-vim-lsp'
+let g:lsp_diagnostics_echo_cursor = 1
+
+" ---- COC ----
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"function! CocCurrentFunction()
+    "return get(b:, 'coc_current_function', '')
+"endfunction
+
+
+" ---- vim-polyglot ----
+Plug 'sheerun/vim-polyglot'
 
 " ---- ALE ----
  Plug 'w0rp/ale'
@@ -63,6 +77,7 @@ let g:lightline = {
              \}
  let g:ale_fix_on_save = 0
  let g:ale_set_highlights = 0
+ let g:ale_completion_enabled = 0
  map <C-A-L> :ALEFix<CR>
 
 " ---- NerdTree ----
@@ -96,40 +111,36 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'qpkorr/vim-bufkill'
 map <C-q> :BD<CR>
 
-" ---- CSS ----
-Plug 'hail2u/vim-css3-syntax'
-
 " ---- Markdown ----
-Plug 'plasticboy/vim-markdown'
+" settings for vim-markdown (provided by vim-polyglot)
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
 " ---- Python ----
+Plug 'ryanolsonx/vim-lsp-python'
 Plug 'deoplete-plugins/deoplete-jedi'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " ---- Javascript ----
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'carlitux/deoplete-ternjs'
-let g:jsx_ext_required = 0 " highlighting jsx syntax for .js files too
 
 " ---- Styled-components ----
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ---- Typescript ----
-Plug 'HerringtonDarkholme/yats.vim' " syntax highlighting
-Plug 'mhartington/nvim-typescript'
-
-" ---- JSON ----
-Plug 'elzr/vim-json'
-
-" ---- Caddyfile ----
-Plug 'isobit/vim-caddyfile'
+Plug 'ryanolsonx/vim-lsp-typescript'
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript', 'typescript.tsx'],
+        \ })
+endif
 
 " ---- GO ----
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+"Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:go_version_warning = 0
 let g:ale_go_golangci_lint_options = '--fast'
 

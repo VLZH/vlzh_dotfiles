@@ -11,6 +11,10 @@ filetype plugin indent on     " обязательно!
 Plug 'vimwiki/vimwiki'
 let wiki = {}
 let wiki.automatic_nested_syntaxes = 0
+let g:vimwiki_list = [{
+    \'path': '~/vimwiki/',
+    \'syntax': 'markdown', 'ext': '.md'
+    \}]
 
 Plug 'lokaltog/vim-easymotion'
 Plug 'godlygeek/tabular'
@@ -26,16 +30,16 @@ let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status',
+    \   'currentfunction': 'CocCurrentFunction'
+    \ },
+    \}
 
 " ---- Deoplete ----
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -64,17 +68,19 @@ Plug 'sheerun/vim-polyglot'
      \'javascript': ['eslint'],
      \'typescript': ['eslint'],
      \'python': ['flake8'],
- \}
+     \}
  let g:ale_fixers = {
-             \'python': ['black'],
-             \'javascript': ['prettier'],
-             \'html': ['prettier'],
-             \'typescript': ['prettier', 'tslint'],
-             \'ts': ['prettier'],
-             \'json': ['prettier'],
-             \'go': ['gofmt'],
-             \'yaml': ['prettier'],
-             \}
+     \'python': ['black'],
+     \'javascript': ['prettier'],
+     \'html': ['prettier'],
+     \'typescript': ['prettier', 'tslint'],
+     \'ts': ['prettier'],
+     \'json': ['prettier'],
+     \'go': ['gofmt'],
+     \'yaml': ['prettier'],
+     \'markdown': ['prettier'],
+     \'md': ['prettier'],
+     \}
  let g:ale_fix_on_save = 0
  let g:ale_set_highlights = 0
  let g:ale_completion_enabled = 0
@@ -115,11 +121,19 @@ map <C-q> :BD<CR>
 " settings for vim-markdown (provided by vim-polyglot)
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " ---- Python ----
-Plug 'ryanolsonx/vim-lsp-python'
-Plug 'deoplete-plugins/deoplete-jedi'
 let g:python3_host_prog = '/usr/local/bin/python3'
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+        \ })
+endif
+"Plug 'deoplete-plugins/deoplete-jedi'
 
 " ---- Javascript ----
 Plug 'carlitux/deoplete-ternjs'

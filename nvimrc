@@ -15,6 +15,7 @@ let g:vimwiki_list = [{
     \'path': '~/vimwiki/',
     \'syntax': 'markdown', 'ext': '.md'
     \}]
+let g:vimwiki_global_ext = 0
 
 Plug 'lokaltog/vim-easymotion'
 Plug 'godlygeek/tabular'
@@ -72,6 +73,7 @@ Plug 'sheerun/vim-polyglot'
  let g:ale_fixers = {
      \'python': ['black'],
      \'javascript': ['prettier'],
+     \'javascriptreact': ['prettier'],
      \'html': ['prettier'],
      \'typescript': ['prettier', 'tslint'],
      \'ts': ['prettier'],
@@ -121,6 +123,8 @@ map <C-q> :BD<CR>
 " settings for vim-markdown (provided by vim-polyglot)
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_folding_style_pythonic = 1
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " ---- Python ----

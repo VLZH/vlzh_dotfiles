@@ -54,9 +54,11 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     # tools
+    git
     httpie
     aws
     ansible
+    gpg-agent
     # managers
     brew
     npm
@@ -68,6 +70,7 @@ plugins=(
     # python
     django
     python
+    poetry
     # go
     golang
     # js
@@ -103,7 +106,6 @@ alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_ligh
 alias alacritty-colorscheme-solarized_light="alacritty-colorscheme -t solarized_light.yaml"
 # GO
 export GOPATH=$HOME/go
-export GO111MODULE=on
 # BAT
 export BAT_THEME="TwoDark"
 # FZF
@@ -122,6 +124,16 @@ fi
 # PANDOC
 rmd () {
   pandoc $1 | lynx -stdin
+}
+
+toggle_node_modules() {
+  if [ -d node_modules ]
+  then
+    mv node_modules _node_modules
+  elif [ -d _node_modules ]
+  then
+    mv _node_modules node_modules
+  fi
 }
 
 # GPG

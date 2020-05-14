@@ -17,8 +17,33 @@ let g:vimwiki_list = [{
     \}]
 let g:vimwiki_global_ext = 0
 
+" ---- Easymotion ----
 Plug 'lokaltog/vim-easymotion'
+
+" ---- Tablular ----
 Plug 'godlygeek/tabular'
+
+" ---- NerdTree ----
+Plug 'scrooloose/nerdtree'
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$','\.o$']
+map <F3> :NERDTreeToggle<CR>
+map <F4> :NERDTreeFind<CR>
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
+
+"---- Nerd commenter ----
+Plug 'scrooloose/nerdcommenter'
+
+" ---- Surround ----
+Plug 'machakann/vim-sandwich'
+
+"---- FZF ----
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+map <c-p> :FZF<CR>
+map <c-b> :Buffers<CR>
+map <c-t> :Tags<CR>
+let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
 
 " ---- EMMET ----
 Plug 'mattn/emmet-vim'
@@ -52,13 +77,6 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'lighttiger2505/deoplete-vim-lsp'
 let g:lsp_diagnostics_echo_cursor = 1
 
-" ---- COC ----
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"function! CocCurrentFunction()
-    "return get(b:, 'coc_current_function', '')
-"endfunction
-
-
 " ---- vim-polyglot ----
 Plug 'sheerun/vim-polyglot'
 
@@ -71,44 +89,27 @@ Plug 'sheerun/vim-polyglot'
      \'python': ['flake8'],
      \}
  let g:ale_fixers = {
-     \'python': ['black'],
+     \'css': ['prettier'],
+     \'go': ['gofmt'],
+     \'html': ['prettier'],
      \'javascript': ['prettier'],
      \'javascriptreact': ['prettier'],
-     \'html': ['prettier'],
-     \'typescript': ['prettier', 'tslint'],
-     \'ts': ['prettier'],
      \'json': ['prettier'],
-     \'go': ['gofmt'],
-     \'yaml': ['prettier'],
+     \'json5': ['prettier'],
      \'markdown': ['prettier'],
      \'md': ['prettier'],
+     \'python': ['black'],
+     \'ts': ['prettier'],
+     \'typescript': ['prettier', 'tslint'],
+     \'typescriptreact': ['prettier', 'tslint'],
+     \'vimwiki': ['prettier'],
+     \'vue': ['prettier'],
+     \'yaml': ['prettier'],
      \}
  let g:ale_fix_on_save = 0
  let g:ale_set_highlights = 0
  let g:ale_completion_enabled = 0
  map <C-A-L> :ALEFix<CR>
-
-" ---- NerdTree ----
-Plug 'scrooloose/nerdtree'
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$','\.o$']
-map <F3> :NERDTreeToggle<CR>
-map <F4> :NERDTreeFind<CR>
-let g:NERDTreeDirArrowExpandable="+"
-let g:NERDTreeDirArrowCollapsible="~"
-
-" ---- Surround ----
-Plug 'tpope/vim-surround'
-
-"---- FZF ----
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-map <c-p> :FZF<CR>
-map <c-b> :Buffers<CR>
-map <c-t> :Tags<CR>
-let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
-
-"---- Nerd commenter ----
-Plug 'scrooloose/nerdcommenter'
 
 "---- Git ----
 Plug 'tpope/vim-fugitive'
@@ -125,19 +126,20 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_fenced_languages = ['js=javascript']
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " ---- Python ----
-let g:python3_host_prog = '/usr/local/bin/python3'
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
-        \ })
-endif
-"Plug 'deoplete-plugins/deoplete-jedi'
+"let g:python3_host_prog = '/usr/local/bin/python3'
+"if executable('pyls')
+    "au User lsp_setup call lsp#register_server({
+        "\ 'name': 'pyls',
+        "\ 'cmd': {server_info->['pyls']},
+        "\ 'whitelist': ['python'],
+        "\ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+        "\ })
+"endif
+Plug 'deoplete-plugins/deoplete-jedi'
 
 " ---- Javascript ----
 Plug 'carlitux/deoplete-ternjs'
@@ -157,8 +159,8 @@ if executable('typescript-language-server')
 endif
 
 " ---- GO ----
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:go_version_warning = 0
 let g:ale_go_golangci_lint_options = '--fast'
 
@@ -173,6 +175,7 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
 
 " ---- Font ----
+set guifont=JetBrains\ Mono:h13
 if has("gui_running")
     call MacSetFont("Fira Code", 12)
     call MacSetFontShouldAntialias(1)

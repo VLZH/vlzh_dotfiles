@@ -90,7 +90,7 @@ alias dk="docker"
 alias dkc="docker-compose"
 alias dkm="docker-machine"
 # 
-alias vim="nvim"
+alias vim="nvim -u NORC"
 # tips
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 # PATH

@@ -71,11 +71,41 @@ let g:lightline = {
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 
-" ---- vim-lsp ----
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'lighttiger2505/deoplete-vim-lsp'
-let g:lsp_diagnostics_echo_cursor = 1
+" ---- Language Server ----
+Plug 'natebosch/vim-lsc'
+Plug 'hrsh7th/deoplete-vim-lsc'
+
+let g:lsc_server_commands = {
+    \  'python': {
+    \    'command': 'pyls',
+    \  },
+    \  'javascript': {
+    \    'command': 'typescript-language-server --stdio',
+    \  },
+    \  'javascriptreact': {
+    \    'command': 'typescript-language-server --stdio',
+    \  },
+    \  'typescript': {
+    \    'command': 'typescript-language-server --stdio',
+    \  },
+    \  'typescriptreact': {
+    \    'command': 'typescript-language-server --stdio',
+    \  }
+    \}
+
+let g:lsc_auto_map = {
+    \  'GoToDefinition': 'gd',
+    \  'FindReferences': 'gr',
+    \  'Rename': 'gR',
+    \  'ShowHover': 'K',
+    \  'FindCodeActions': 'ga',
+    \  'Completion': 'omnifunc',
+    \}
+
+let g:lsc_enable_autocomplete  = v:true
+let g:lsc_enable_diagnostics   = v:false
+let g:lsc_reference_highlights = v:false
+let g:lsc_trace_level          = 'off'
 
 " ---- vim-polyglot ----
 Plug 'sheerun/vim-polyglot'
@@ -130,16 +160,7 @@ let g:vim_markdown_fenced_languages = ['js=javascript']
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " ---- Python ----
-"let g:python3_host_prog = '/usr/local/bin/python3'
-"if executable('pyls')
-    "au User lsp_setup call lsp#register_server({
-        "\ 'name': 'pyls',
-        "\ 'cmd': {server_info->['pyls']},
-        "\ 'whitelist': ['python'],
-        "\ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
-        "\ })
-"endif
-Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'deoplete-plugins/deoplete-jedi'
 
 " ---- Javascript ----
 Plug 'carlitux/deoplete-ternjs'
@@ -148,15 +169,6 @@ Plug 'carlitux/deoplete-ternjs'
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " ---- Typescript ----
-Plug 'ryanolsonx/vim-lsp-typescript'
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-        \ 'whitelist': ['typescript', 'typescript.tsx'],
-        \ })
-endif
 
 " ---- GO ----
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -210,10 +222,13 @@ set nobackup
 set termguicolors
 
 " ---- Hotkeys ----
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
-map <C-K> :bnext<CR>
-map <C-J> :bprev<CR>
+nmap <C-l> <C-w><Right>
+nmap <C-h> <C-w><Left>
+nmap <C-K> :bnext<CR>
+nmap <C-J> :bprev<CR>
+nmap <F9> qq
+nmap <F10> q
+nmap <F12> @q
 
 " ---- Mouse ----
 set mouse=a
@@ -291,8 +306,6 @@ call ALEShowListDisable()
 if exists("b:did_indent")
   finish
 endif
-"runtime! indent/ruby.vim
-"unlet! b:did_indent
 let b:did_indent = 1
 
 setlocal autoindent sw=2 et

@@ -68,44 +68,16 @@ let g:lightline = {
     \}
 
 " ---- Deoplete ----
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"let g:deoplete#enable_at_startup = 1
 
-" ---- Language Server ----
-Plug 'natebosch/vim-lsc'
-Plug 'hrsh7th/deoplete-vim-lsc'
-
-let g:lsc_server_commands = {
-    \  'python': {
-    \    'command': 'pyls',
-    \  },
-    \  'javascript': {
-    \    'command': 'typescript-language-server --stdio',
-    \  },
-    \  'javascriptreact': {
-    \    'command': 'typescript-language-server --stdio',
-    \  },
-    \  'typescript': {
-    \    'command': 'typescript-language-server --stdio',
-    \  },
-    \  'typescriptreact': {
-    \    'command': 'typescript-language-server --stdio',
-    \  }
-    \}
-
-let g:lsc_auto_map = {
-    \  'GoToDefinition': 'gd',
-    \  'FindReferences': 'gr',
-    \  'Rename': 'gR',
-    \  'ShowHover': 'K',
-    \  'FindCodeActions': 'ga',
-    \  'Completion': 'omnifunc',
-    \}
-
-let g:lsc_enable_autocomplete  = v:true
-let g:lsc_enable_diagnostics   = v:false
-let g:lsc_reference_highlights = v:false
-let g:lsc_trace_level          = 'off'
+" --- COC ----
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " ---- vim-polyglot ----
 Plug 'sheerun/vim-polyglot'
@@ -116,7 +88,7 @@ Plug 'sheerun/vim-polyglot'
      \'go': ['gofmt', 'golangci-lint', 'golint'],
      \'javascript': ['eslint'],
      \'typescript': ['eslint'],
-     \'python': ['flake8'],
+     \'python': ['flake8', 'pyright'],
      \}
  let g:ale_fixers = {
      \'css': ['prettier'],
@@ -159,21 +131,10 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_fenced_languages = ['js=javascript']
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-" ---- Python ----
-" Plug 'deoplete-plugins/deoplete-jedi'
-
 " ---- Javascript ----
-Plug 'carlitux/deoplete-ternjs'
-
-" ---- Styled-components ----
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-" ---- Typescript ----
+" Plug 'carlitux/deoplete-ternjs'
 
 " ---- GO ----
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-let g:go_version_warning = 0
 let g:ale_go_golangci_lint_options = '--fast'
 
 " ---- Themes ----

@@ -67,10 +67,10 @@ plugins=(
     # docker
     docker
     docker-compose
+    docker-machine
     # python
     django
     python
-    poetry
     # go
     golang
     # js
@@ -78,34 +78,46 @@ plugins=(
     gulp
     # another
     fast-syntax-highlighting # [install] git clone https://github.com/zdharma/fast-syntax-highlighting.git \ ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
-    zsh-autosuggestions # [install] git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    # zsh-autosuggestions # [install] git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 )
 setopt HIST_FIND_NO_DUPS
 
 source $ZSH/oh-my-zsh.sh
 
-# docker
+# DOCKER
 alias dk="docker"
 alias dkc="docker-compose"
 alias dkm="docker-machine"
-# 
+# NVIM
 alias vim="nvim -u NORC"
-# tips
+# TIPS
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 # PATH
-export PATH=$PATH:/usr/local/sbin
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.yarn/bin:$HOME/Library/Python/3.6/bin
-export PATH=~/Library/Android/sdk/platform-tools:$PATH
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="$PATH:$HOME/go/bin:$HOME/.yarn/bin"
+export PATH="/usr/local/bin:$PATH"
 # ALACRITTY
 alias alacritty-colorscheme="alacritty-colorscheme -C ~/.alacritty_themes"
 alias alacritty-colorscheme-dracula="alacritty-colorscheme -t dracula.yaml"
 alias alacritty-colorscheme-gruvbox_dark="alacritty-colorscheme -t gruvbox_dark.yaml"
 alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_light.yaml"
-alias alacritty-colorscheme-solarized_light="alacritty-colorscheme -t solarized_light.yaml"
+alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_light.yaml"
+alias alacritty-colorscheme-pencil_light="alacritty-colorscheme -t pencil_light.yaml"
 # GO
 export GOPATH=$HOME/go
+export GO111MODULE=on
+# ANDROID
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+# PHP
+alias php="/usr/local/bin/php"
+alias php-cgi="/usr/local/bin/php-cgi"
+alias php-config="/usr/local/bin/php-config"
+alias phpdbg="/usr/local/bin/phpdbg"
+alias phpize="/usr/local/bin/phpize"
 # BAT
 export BAT_THEME="TwoDark"
 # FZF
@@ -138,3 +150,7 @@ toggle_node_modules() {
 
 # GPG
 GPG_TTY=$(tty)
+
+#
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down

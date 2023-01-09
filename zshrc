@@ -56,9 +56,9 @@ plugins=(
     # tools
     git
     httpie
-    aws
     ansible
     gpg-agent
+    aws
     # managers
     brew
     npm
@@ -69,13 +69,13 @@ plugins=(
     docker-compose
     docker-machine
     # python
-    django
     python
     # go
     golang
     # js
     node
     gulp
+    deno
     # another
     fast-syntax-highlighting # [install] git clone https://github.com/zdharma/fast-syntax-highlighting.git \ ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
     # zsh-autosuggestions # [install] git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -103,12 +103,17 @@ alias alacritty-colorscheme-gruvbox_dark="alacritty-colorscheme -t gruvbox_dark.
 alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_light.yaml"
 alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_light.yaml"
 alias alacritty-colorscheme-pencil_light="alacritty-colorscheme -t pencil_light.yaml"
+# GROWAVE SESSIONS
+
+alias gw_consul1="aws ssm start-session --target i-0bac5be394f3dd99a"
+
 # GO
 export GOPATH=$HOME/go
 export GO111MODULE=on
 # ANDROID
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -120,6 +125,8 @@ alias phpdbg="/usr/local/bin/phpdbg"
 alias phpize="/usr/local/bin/phpize"
 # BAT
 export BAT_THEME="TwoDark"
+# TYPORA
+alias typora="open -a typora"
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_COMPLETION_OPTS="--preview '(bat --color=always {} || cat {} || tree -C {}) 2> /dev/null | head -200'"
@@ -133,6 +140,14 @@ if [ -n $(command -v exa) ]; then
   alias l="exa -lah"
   alias ll="exa -lh"
 fi
+
+# CHROME
+node-inspect() {
+  local TAB_ID=`chrome-cli open 'chrome://inspect/#devices' -n | head -n 1 | awk '{ print $2 }'`
+  sleep 0.5
+  chrome-cli execute "document.getElementById('node-frontend').click()" -t $TAB_ID && chrome-cli close -t $TAB_ID
+}
+
 # PANDOC
 rmd () {
   pandoc $1 | lynx -stdin
@@ -154,3 +169,7 @@ GPG_TTY=$(tty)
 #
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+autoload -U compinit; compinit
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault

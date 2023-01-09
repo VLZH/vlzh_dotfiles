@@ -85,27 +85,11 @@ setopt HIST_FIND_NO_DUPS
 
 source $ZSH/oh-my-zsh.sh
 
-# DOCKER
-alias dk="docker"
-alias dkc="docker-compose"
-alias dkm="docker-machine"
-# NVIM
-alias vim="nvim -u NORC"
 # TIPS
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
 # PATH
 export PATH="$PATH:$HOME/go/bin:$HOME/.yarn/bin"
 export PATH="/usr/local/bin:$PATH"
-# ALACRITTY
-alias alacritty-colorscheme="alacritty-colorscheme -C ~/.alacritty_themes"
-alias alacritty-colorscheme-dracula="alacritty-colorscheme -t dracula.yaml"
-alias alacritty-colorscheme-gruvbox_dark="alacritty-colorscheme -t gruvbox_dark.yaml"
-alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_light.yaml"
-alias alacritty-colorscheme-gruvbox_light="alacritty-colorscheme -t gruvbox_light.yaml"
-alias alacritty-colorscheme-pencil_light="alacritty-colorscheme -t pencil_light.yaml"
-# GROWAVE SESSIONS
-
-alias gw_consul1="aws ssm start-session --target i-0bac5be394f3dd99a"
 
 # GO
 export GOPATH=$HOME/go

@@ -1,62 +1,13 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="spaceship"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+setopt HIST_FIND_NO_DUPS
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
     # tools
     git
     httpie
-    ansible
     gpg-agent
     aws
     # managers
@@ -68,47 +19,43 @@ plugins=(
     docker
     docker-compose
     docker-machine
+    kubectl
     # python
     python
     # go
     golang
     # js
     node
-    gulp
     deno
     # another
     fast-syntax-highlighting # [install] git clone https://github.com/zdharma/fast-syntax-highlighting.git \ ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
-    # zsh-autosuggestions # [install] git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 )
-setopt HIST_FIND_NO_DUPS
+
 
 source $ZSH/oh-my-zsh.sh
 
+# DOCKER
+export DOCKER_BUILDKIT=1
+
 # TIPS
 alias sshpass="ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+
 # PATH
-export PATH="$PATH:$HOME/go/bin:$HOME/.yarn/bin"
-export PATH="/usr/local/bin:$PATH"
+export PATH="$PATH:$HOME/go/bin:$HOME/Library/Python/3.11/bin"
+export EDITOR="nvim"
 
 # GO
 export GOPATH=$HOME/go
 export GO111MODULE=on
-# ANDROID
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-# PHP
-alias php="/usr/local/bin/php"
-alias php-cgi="/usr/local/bin/php-cgi"
-alias php-config="/usr/local/bin/php-config"
-alias phpdbg="/usr/local/bin/phpdbg"
-alias phpize="/usr/local/bin/phpize"
+
 # BAT
 export BAT_THEME="TwoDark"
+alias cat="bat --style=header"
+
+# VAULT
+complete -o nospace -C /usr/local/bin/vault vault
+
 # TYPORA
 alias typora="open -a typora"
 # FZF
@@ -125,28 +72,6 @@ if [ -n $(command -v exa) ]; then
   alias ll="exa -lh"
 fi
 
-# CHROME
-node-inspect() {
-  local TAB_ID=`chrome-cli open 'chrome://inspect/#devices' -n | head -n 1 | awk '{ print $2 }'`
-  sleep 0.5
-  chrome-cli execute "document.getElementById('node-frontend').click()" -t $TAB_ID && chrome-cli close -t $TAB_ID
-}
-
-# PANDOC
-rmd () {
-  pandoc $1 | lynx -stdin
-}
-
-toggle_node_modules() {
-  if [ -d node_modules ]
-  then
-    mv node_modules _node_modules
-  elif [ -d _node_modules ]
-  then
-    mv _node_modules node_modules
-  fi
-}
-
 # GPG
 GPG_TTY=$(tty)
 
@@ -156,4 +81,5 @@ bindkey "^[[B" history-substring-search-down
 autoload -U compinit; compinit
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/vault vault
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
